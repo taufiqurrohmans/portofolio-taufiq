@@ -14,6 +14,7 @@ export default defineConfig(async ({ command }) => {
 
   const localBindingConfig = {
     main: "./worker/index.ts",
+    compatibility_date: "2024-09-23",
     compatibility_flags: ["nodejs_compat"],
     ...(isBuild ? {} : {
       d1_databases: d1
