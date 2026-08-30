@@ -1,0 +1,212 @@
+.certificate-section { 
+  background: transparent; 
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.25rem, 4vw, 4.5rem);
+}
+
+.certificate-section .section-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto 3.5rem;
+  max-width: 650px;
+}
+
+/* Playful, unique animation for the ampersand in the title */
+.animated-ampersand {
+  display: inline-block;
+  color: var(--deep-blue, #164fc4);
+  animation: bounceRotate 3.5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+  transform-origin: center;
+  margin: 0 0.1rem;
+}
+
+@keyframes bounceRotate {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  20% {
+    transform: rotate(-15deg) scale(1.15);
+  }
+  40% {
+    transform: rotate(15deg) scale(1.15);
+  }
+  60% {
+    transform: rotate(-5deg) scale(1.05);
+  }
+  80% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+.certificate-section .section-heading h2 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #141519;
+  margin: 0 0 1rem 0;
+  line-height: 1.1;
+}
+
+.certificate-section .section-heading p:last-child {
+  font-size: 1.05rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.certificate-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+  gap: 1.5rem; 
+}
+
+.cert-card { 
+  background: #ffffff; 
+  border: 1px solid #e2e8f0; 
+  border-radius: 20px; 
+  padding: 1.5rem; 
+  display: flex; 
+  flex-direction: column; 
+  position: relative; 
+  overflow: hidden; 
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease; 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.cert-card:hover { 
+  transform: translateY(-8px); 
+  box-shadow: 0 20px 40px rgba(22, 79, 196, 0.08); 
+  border-color: #93c5fd; 
+}
+
+.cert-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.cert-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 0.3rem 0.7rem;
+  border-radius: 99px;
+}
+
+.cert-number {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #e2e8f0;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.cert-card:hover .cert-number {
+  color: #bfdbfe;
+}
+
+.cert-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  min-height: 120px;
+  margin-bottom: 2rem;
+}
+
+.cert-img-div {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  pointer-events: none;
+}
+
+.cert-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 0 8px rgba(219, 234, 254, 0.5);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.cert-card:hover .cert-icon-wrapper {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 0 0 12px rgba(219, 234, 254, 0.3);
+}
+
+.cert-icon {
+  width: 36px;
+  height: 36px;
+  color: #0284c7;
+}
+
+.cert-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 1.25rem;
+}
+
+.cert-meta {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cert-meta span {
+  color: #cbd5e1;
+}
+
+.cert-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #1e293b;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.cert-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #1e293b;
+  text-decoration: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+  width: fit-content;
+}
+
+.cert-link:hover {
+  transform: translateX(4px);
+  color: #164fc4;
+}
+
+.cert-link-icon {
+  width: 14px;
+  height: 14px;
+}

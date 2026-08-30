@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1788006550751,
+      "tag": "0000_shocking_unicorn",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1788007113737,
+      "tag": "0001_silky_lockjaw",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1788007316089,
+      "tag": "0002_neat_namorita",
+      "breakpoints": true
+    }
+  ]
+}

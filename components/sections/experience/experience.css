@@ -1,0 +1,10 @@
+.experience-section { background: var(--blue); }
+.timeline { border-top: 1px solid rgba(20,21,25,.28); }
+.timeline article { display: grid; grid-template-columns: .28fr 1fr .45fr auto; gap: 2rem; align-items: start; padding: 2.2rem 0; border-bottom: 1px solid rgba(20,21,25,.28); position: relative; border-radius: 12px; transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, padding 0.3s ease; }
+.timeline article:hover { background: rgba(255,255,255,.32); padding-left: 1.2rem; padding-right: 1.2rem; transform: translateX(8px); }
+.timeline article > span:first-child { font-size: .65rem; font-weight: 800; letter-spacing: .08em; }
+.timeline h3 { margin: 0 0 .6rem; font-size: 1.25rem; }
+.timeline p { margin: 0; color: rgba(20,21,25,.68); line-height: 1.65; max-width: 580px; font-size: .83rem; }
+.timeline strong { text-align: right; font-size: .8rem; }
+.timeline-index { width: 42px; height: 42px; display: grid; place-items: center; background: var(--paper); border: 2px solid var(--ink); border-radius: 8px; box-shadow: 4px 4px 0 var(--ink); font-weight: 900; transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease; }
+.timeline article:hover .timeline-index { transform: rotate(-8deg) scale(1.14); box-shadow: 6px 6px 0 var(--ink); }

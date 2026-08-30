@@ -1,0 +1,226 @@
+/* Hero Editorial Showcase Section */
+.hero-editorial-showcase {
+  width: 100%;
+  padding: clamp(2.5rem, 4.5vw, 4.2rem) clamp(1.25rem, 3.5vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  background-color: transparent;
+}
+
+.hero-poster-canvas {
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0; /* Removing gap to tightly control spacing */
+  position: relative;
+}
+
+/* Animated Portf[==]lio Title */
+.editorial-title-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: clamp(0.5rem, 2vw, 1.5rem);
+}
+.editorial-title {
+  font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+  font-size: clamp(4rem, 10vw, 8.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: #141519;
+  text-transform: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* -------------------------------------
+   Animated 'O' Pill Shape
+------------------------------------- */
+.title-animated-o {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0.05em;
+}
+
+.o-pill-shape {
+  display: inline-block;
+  height: 0.6em;
+  border: 0.12em solid #141519;
+  border-radius: 999px;
+  background: transparent;
+  box-sizing: border-box;
+  vertical-align: middle;
+  position: relative;
+  top: -0.01em;
+  transition: all 0.3s ease;
+  animation: oStretch 2s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+
+.title-animated-o:hover .o-pill-shape {
+  border-color: var(--deep-blue, #164fc4);
+  background-color: rgba(22, 79, 196, 0.05);
+}
+
+@keyframes oStretch {
+  0%, 15% { width: 0.65em; } /* Perfect circle (normal 'o') */
+  85%, 100% { width: 1.6em; } /* Stretched pill */
+}
+
+/* Direct Hero Artwork */
+.hero-direct-artwork {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-direct-image {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Replaces max-height logic for a scalable div */
+  background-image: url('/images/tumb.png');
+  background-size: contain;
+  background-position: center top;
+  background-repeat: no-repeat;
+  margin-top: -2%; /* Pull the image slightly up towards the title */
+  filter: drop-shadow(0 25px 50px rgba(20, 21, 25, 0.13));
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+  pointer-events: none; /* Disables right-click and standard inspection over the image */
+}
+.hero-direct-artwork:hover .hero-direct-image {
+  transform: translateY(-6px) scale(1.015);
+  filter: drop-shadow(0 35px 70px rgba(22, 79, 196, 0.18));
+}
+
+/* Direct Footer Row */
+.hero-direct-footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Align right matching reference */
+  gap: clamp(1rem, 2vw, 1.8rem);
+  padding-right: clamp(1rem, 4vw, 3rem);
+  margin-top: -3.5rem; /* Overlap the image bottom right */
+  position: relative;
+  z-index: 10;
+}
+
+/* Profile Pill Card */
+.profile-pill-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0.55rem 1.65rem;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1.8px solid rgba(20, 21, 25, 0.16);
+  box-shadow: 0 5px 18px rgba(20, 21, 25, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.profile-pill-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(20, 21, 25, 0.1);
+}
+.profile-pill-card strong {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(0.85rem, 1.3vw, 1rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: #141519;
+}
+.profile-pill-card span {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(0.62rem, 0.9vw, 0.72rem);
+  color: #737373;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Vertical Rolling Year Widget & Smiley Face */
+.year-counter-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.year-counter-widget:hover {
+  transform: scale(1.05);
+}
+.year-number-display {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+  font-size: clamp(2.8rem, 5.2vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #141519;
+}
+.year-prefix {
+  display: inline-block;
+  letter-spacing: -0.04em;
+}
+.year-digit-viewport {
+  display: inline-block;
+  height: 1.15em;
+  overflow: hidden;
+  position: relative;
+  vertical-align: middle;
+  min-width: 0.55em;
+}
+.year-digit-roller {
+  display: flex;
+  flex-direction: column;
+  animation: rollDigitSlot 2.2s cubic-bezier(0.2, 0.9, 0.25, 1) forwards;
+  will-change: transform;
+}
+.digit-item {
+  height: 1.15em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-feature-settings: "tnum";
+  line-height: 1;
+}
+.digit-target {
+  font-size: 1em;
+  font-weight: 800;
+}
+@keyframes rollDigitSlot {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-75%);
+  }
+}
+
+.smiley-face-badge {
+  width: clamp(38px, 4.2vw, 48px);
+  height: clamp(38px, 4.2vw, 48px);
+  display: grid;
+  place-items: center;
+  color: #141519;
+  border: 2.8px solid #141519;
+  border-radius: 50%;
+  padding: 4px;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease, border-color 0.3s ease;
+}
+.smiley-face-badge svg {
+  width: 100%;
+  height: 100%;
+}
+.year-counter-widget:hover .smiley-face-badge {
+  transform: rotate(20deg) scale(1.1);
+  color: var(--deep-blue);
+  border-color: var(--deep-blue);
+}
