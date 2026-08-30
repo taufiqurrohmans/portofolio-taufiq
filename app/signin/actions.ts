@@ -18,11 +18,12 @@ export async function signInAction(state: any, formData: FormData) {
 
   const trimmedEmail = email.trim().toLowerCase();
 
+  const expectedPassword = typeof env?.ADMIN_PASSWORD === "string" ? env.ADMIN_PASSWORD : process.env.ADMIN_PASSWORD || "";
+
   if (!allowedEmails.includes(trimmedEmail)) {
-    return { error: `Access denied for email: ${trimmedEmail}` };
+    return { error: `Debug: ADMIN_EMAILS="${rawEmails}", ADMIN_PASSWORD="${expectedPassword ? 'SET' : 'MISSING'}"` };
   }
 
-  const expectedPassword = typeof env?.ADMIN_PASSWORD === "string" ? env.ADMIN_PASSWORD : process.env.ADMIN_PASSWORD || "";
   if (!expectedPassword) {
     return { error: "Server error: ADMIN_PASSWORD is not configured in Cloudflare." };
   }
