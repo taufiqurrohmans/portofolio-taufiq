@@ -45,6 +45,16 @@ export default function SignInPage() {
               autoFocus
             />
           </div>
+          <div className="space-y-2">
+            <Label htmlFor="password">Kata Sandi (Password)</Label>
+            <Input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="••••••••"
+              required
+            />
+          </div>
           <Button type="submit" className="w-full" disabled={isPending}>
             {isPending ? "Signing in..." : "Sign in"}
           </Button>
