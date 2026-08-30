@@ -1,4 +1,4 @@
-import { headers } from "next/headers";
+import { headers, cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { env } from "cloudflare:workers";
 
@@ -29,13 +29,17 @@ const CALLBACK_PATH = "/callback";
 
 export async function getAuthUser(): Promise<AuthUser | null> {
   const requestHeaders = await headers();
-
-  let email: string | null = null;
-  for (const headerName of USER_EMAIL_HEADERS) {
-    const value = requestHeaders.get(headerName);
-    if (value) {
-      email = value;
-      break;
+  const cookieStore = await cookies();
+  
+  let email: string | null = cookieStore.get("admin_session")?.value || null;
+  
+  if (!email) {
+    for (const headerName of USER_EMAIL_HEADERS) {
+      const value = requestHeaders.get(headerName);
+      if (value) {
+        email = value;
+        break;
+      }
     }
   }
 
