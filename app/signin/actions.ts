@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { env } from "cloudflare:workers";
 
-export async function signInAction(formData: FormData) {
+export async function signInAction(state: any, formData: FormData) {
   const email = formData.get("email")?.toString();
   const password = formData.get("password")?.toString();
   const returnTo = formData.get("return_to")?.toString() || "/admin";

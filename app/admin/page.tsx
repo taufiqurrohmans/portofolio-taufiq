@@ -1,6 +1,5 @@
 import { AdminDashboard } from "@/components/admin-dashboard";
 import { requireAdminPage } from "@/lib/admin-auth";
-import "./admin.css";
 
 export const dynamic = "force-dynamic";
 
