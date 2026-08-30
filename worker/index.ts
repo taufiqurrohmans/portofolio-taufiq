@@ -26,8 +26,16 @@ interface ExecutionContext {
 // const imageConfig: ImageConfig = { dangerouslyAllowSVG: true };
 
 const worker = {
-  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+  async fetch(request: Request, env: any, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+
+    // Fix Server Actions context loss: Inject runtime variables into global process.env
+    globalThis.process = globalThis.process || { env: {} };
+    globalThis.process.env = globalThis.process.env || {};
+    
+    // Specifically assign auth variables if they exist in env
+    if (env.ADMIN_EMAILS) globalThis.process.env.ADMIN_EMAILS = env.ADMIN_EMAILS;
+    if (env.ADMIN_PASSWORD) globalThis.process.env.ADMIN_PASSWORD = env.ADMIN_PASSWORD;
 
     if (url.pathname === "/_vinext/image") {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];
