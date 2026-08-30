@@ -34,8 +34,14 @@ const worker = {
     globalThis.process.env = globalThis.process.env || {};
     
     // Specifically assign auth variables if they exist in env
-    if (env.ADMIN_EMAILS) globalThis.process.env.ADMIN_EMAILS = env.ADMIN_EMAILS;
-    if (env.ADMIN_PASSWORD) globalThis.process.env.ADMIN_PASSWORD = env.ADMIN_PASSWORD;
+    if (env.ADMIN_EMAILS) {
+      globalThis.process.env.ADMIN_EMAILS = env.ADMIN_EMAILS;
+      (globalThis as any).__ADMIN_EMAILS = env.ADMIN_EMAILS;
+    }
+    if (env.ADMIN_PASSWORD) {
+      globalThis.process.env.ADMIN_PASSWORD = env.ADMIN_PASSWORD;
+      (globalThis as any).__ADMIN_PASSWORD = env.ADMIN_PASSWORD;
+    }
 
     if (url.pathname === "/_vinext/image") {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];

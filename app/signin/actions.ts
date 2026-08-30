@@ -13,12 +13,12 @@ export async function signInAction(state: any, formData: FormData) {
     return { error: "Email and password are required" };
   }
 
-  const rawEmails = typeof env?.ADMIN_EMAILS === "string" ? env.ADMIN_EMAILS : process.env.ADMIN_EMAILS || "";
-  const allowedEmails = rawEmails.split(",").map((e) => e.trim().toLowerCase()).filter(Boolean);
+  const rawEmails = (globalThis as any).__ADMIN_EMAILS || (typeof env?.ADMIN_EMAILS === "string" ? env.ADMIN_EMAILS : process.env.ADMIN_EMAILS) || "";
+  const allowedEmails = rawEmails.split(",").map((e: string) => e.trim().toLowerCase()).filter(Boolean);
 
   const trimmedEmail = email.trim().toLowerCase();
 
-  const expectedPassword = typeof env?.ADMIN_PASSWORD === "string" ? env.ADMIN_PASSWORD : process.env.ADMIN_PASSWORD || "";
+  const expectedPassword = (globalThis as any).__ADMIN_PASSWORD || (typeof env?.ADMIN_PASSWORD === "string" ? env.ADMIN_PASSWORD : process.env.ADMIN_PASSWORD) || "";
 
   if (!allowedEmails.includes(trimmedEmail)) {
     return { error: `Debug: ADMIN_EMAILS="${rawEmails}", ADMIN_PASSWORD="${expectedPassword ? 'SET' : 'MISSING'}"` };
