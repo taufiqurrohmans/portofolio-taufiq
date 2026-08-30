@@ -16,8 +16,10 @@ export async function signInAction(state: any, formData: FormData) {
   const rawEmails = typeof env?.ADMIN_EMAILS === "string" ? env.ADMIN_EMAILS : process.env.ADMIN_EMAILS || "";
   const allowedEmails = rawEmails.split(",").map((e) => e.trim().toLowerCase()).filter(Boolean);
 
-  if (!allowedEmails.includes(email.toLowerCase())) {
-    return { error: "Invalid admin email or password" };
+  const trimmedEmail = email.trim().toLowerCase();
+
+  if (!allowedEmails.includes(trimmedEmail)) {
+    return { error: `Access denied for email: ${trimmedEmail}` };
   }
 
   const expectedPassword = typeof env?.ADMIN_PASSWORD === "string" ? env.ADMIN_PASSWORD : process.env.ADMIN_PASSWORD || "";
@@ -26,7 +28,7 @@ export async function signInAction(state: any, formData: FormData) {
   }
 
   if (password !== expectedPassword) {
-    return { error: "Invalid admin email or password" };
+    return { error: "Invalid password for this account." };
   }
 
   // Set the cookie
