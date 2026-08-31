@@ -491,7 +491,9 @@ function CertificatesEditor({ content, setContent }: { content: EditableContent;
 }
 
 function GalleryEditor({ content, setContent, media }: { content: EditableContent; setContent: (value: EditableContent) => void; media: MediaAsset[] }) {
+  const [deleteId, setDeleteId] = useState<string | null>(null);
   const gallery = content.gallery || [];
+  
   const update = (index: number, field: keyof NonNullable<EditableContent["gallery"]>[number], value: string) => {
     setContent({
       ...content,
@@ -515,11 +517,13 @@ function GalleryEditor({ content, setContent, media }: { content: EditableConten
     });
   };
 
-  const removeItem = (id: string) => {
+  const confirmRemove = () => {
+    if (!deleteId) return;
     setContent({
       ...content,
-      gallery: gallery.filter((item) => item.id !== id),
+      gallery: gallery.filter((item) => item.id !== deleteId),
     });
+    setDeleteId(null);
   };
 
   return (
@@ -542,7 +546,7 @@ function GalleryEditor({ content, setContent, media }: { content: EditableConten
                   <span className="repeat-index">{String(index + 1).padStart(2, "0")}</span>
                   <strong>{item.title}</strong>
                 </div>
-                <Button variant="ghost" size="icon" onClick={() => removeItem(item.id)}>
+                <Button variant="ghost" size="icon" onClick={() => setDeleteId(item.id)}>
                   <Trash2 className="size-4 text-destructive" />
                 </Button>
               </div>
@@ -626,6 +630,19 @@ function GalleryEditor({ content, setContent, media }: { content: EditableConten
           )}
         </div>
       </section>
+
+      <AlertDialog open={Boolean(deleteId)} onOpenChange={(open) => { if (!open) setDeleteId(null); }}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Hapus foto ini?</AlertDialogTitle>
+            <AlertDialogDescription>Foto ini akan dihapus dari daftar Galeri 3D. Perubahan baru akan tersimpan di website setelah Anda menekan tombol Simpan di atas.</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Batal</AlertDialogCancel>
+            <AlertDialogAction variant="destructive" onClick={confirmRemove}>Hapus</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
