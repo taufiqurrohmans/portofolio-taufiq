@@ -37,6 +37,7 @@
   text-transform: none;
   margin: 0;
   padding: 0;
+  width: max-content;
 }
 
 /* -------------------------------------
@@ -223,4 +224,66 @@
   transform: rotate(20deg) scale(1.1);
   color: var(--deep-blue);
   border-color: var(--deep-blue);
+}
+
+/* =========================================
+   Mobile Optimization (Premium Stacked)
+   ========================================= */
+@media (max-width: 768px) {
+  .hero-editorial-showcase {
+    padding: clamp(1.5rem, 4vw, 2.5rem) 1rem 1.5rem;
+  }
+  
+  .editorial-title {
+    font-size: clamp(3rem, 14vw, 4.5rem);
+    text-align: center;
+    line-height: 1;
+  }
+  
+  .editorial-title-wrap {
+    padding-left: 0;
+    justify-content: center;
+    margin-bottom: 2rem; /* Give space between title and image */
+  }
+  
+  .hero-direct-image {
+    aspect-ratio: 4 / 3; /* More square-ish for mobile to fit hands nicely */
+    margin-top: 0;
+    margin-bottom: 2rem; /* Space between image and footer pills */
+    border-radius: 20px;
+  }
+
+  .hero-direct-footer {
+    justify-content: center;
+    flex-direction: column; /* Stack the pill and the year */
+    align-items: center;
+    gap: 1.5rem;
+    padding-right: 0;
+    margin-top: 0;
+  }
+  
+  .profile-pill-card {
+    padding: 0.8rem 1.5rem;
+  }
+  
+  .profile-pill-card strong {
+    font-size: 0.95rem;
+  }
+  
+  .profile-pill-card span {
+    font-size: 0.75rem;
+  }
+  
+  .year-counter-widget {
+    gap: 0.8rem;
+  }
+  
+  .year-number-display {
+    font-size: 4rem;
+  }
+  
+  .smiley-face-badge {
+    width: 42px;
+    height: 42px;
+  }
 }

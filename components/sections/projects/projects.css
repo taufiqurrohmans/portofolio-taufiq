@@ -904,3 +904,61 @@
     gap: 2.2rem;
   }
 }
+
+/* =========================================
+   Mobile Optimization (Premium Stacked)
+   ========================================= */
+@media (max-width: 768px) {
+  .project-container {
+    padding: clamp(1.5rem, 4vw, 2.5rem) 1.25rem;
+  }
+  
+  .project-container .section-heading h2 {
+    font-size: clamp(2.2rem, 8vw, 3rem);
+  }
+  
+  .project-filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.8rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Hide scrollbar for filters */
+    justify-content: flex-start;
+  }
+  
+  .project-filters::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .project-filters button {
+    flex: 0 0 auto;
+  }
+  
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .project-card {
+    padding: 1.2rem;
+  }
+  
+  .project-thumbnail-wrapper {
+    height: 220px;
+  }
+  
+  .project-modal-card dl {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .modal-actions a, .modal-actions button {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}

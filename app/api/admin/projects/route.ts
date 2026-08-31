@@ -62,6 +62,7 @@ export async function POST(request: Request) {
       coverUrl: value.coverUrl || null,
       liveUrl: value.liveUrl || null,
       githubUrl: value.githubUrl || null,
+      linksJson: JSON.stringify(value.links || []),
       sortOrder: value.sortOrder,
     }).onConflictDoUpdate({
       target: projects.id,
@@ -86,6 +87,7 @@ export async function POST(request: Request) {
         coverUrl: value.coverUrl || null,
         liveUrl: value.liveUrl || null,
         githubUrl: value.githubUrl || null,
+        linksJson: JSON.stringify(value.links || []),
         sortOrder: value.sortOrder,
         updatedAt: sql`CURRENT_TIMESTAMP`,
       },

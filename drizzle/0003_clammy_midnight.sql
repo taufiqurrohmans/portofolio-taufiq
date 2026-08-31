@@ -1,0 +1,1 @@
+ALTER TABLE `projects` ADD `links_json` text DEFAULT '[]';

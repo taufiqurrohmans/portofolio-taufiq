@@ -49,5 +49,9 @@ function absoluteAssetUrl(value: string | undefined, base: URL | undefined): str
 
 export default async function Home() {
   const portfolio = await getPortfolioData();
-  return <PortfolioSite initialData={portfolio} />;
+  const publicPortfolio = {
+    ...portfolio,
+    projects: portfolio.projects.filter(p => p.status === "published" || !p.status)
+  };
+  return <PortfolioSite initialData={publicPortfolio} />;
 }

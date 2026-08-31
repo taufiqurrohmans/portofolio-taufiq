@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
-  if (!project || project.status !== "published") notFound();
+  if (!project || (project.status && project.status !== "published")) notFound();
 
   const detailItems = [
     { label: "Problem", value: project.problem, icon: Gauge },
@@ -41,9 +41,23 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <h1>{project.title}</h1>
         <div className="tag-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
         <p className="case-summary">{project.summary}</p>
-        <div className="case-actions">
+        <div className="case-actions flex flex-wrap gap-3 mt-8">
           {project.liveUrl && <a className="button button-primary" href={project.liveUrl} target="_blank" rel="noreferrer">Live demo <ArrowUpRight /></a>}
           {project.githubUrl && <a className="button button-ghost" href={project.githubUrl} target="_blank" rel="noreferrer">Repository <Code2 /></a>}
+          {project.links?.filter(link => link.isActive).map(link => {
+            const isPrimary = link.type === "website" || link.type === "demo";
+            return (
+              <a 
+                key={link.id}
+                href={link.url} 
+                target={link.openInNewTab ? "_blank" : undefined}
+                rel={link.openInNewTab ? "noreferrer" : undefined}
+                className={`button ${isPrimary ? 'button-primary' : 'button-ghost'}`}
+              >
+                {link.label} <ArrowUpRight />
+              </a>
+            );
+          })}
         </div>
       </section>
       <section className="case-cover">

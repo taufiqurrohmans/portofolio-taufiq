@@ -29,6 +29,7 @@ export const projects = sqliteTable("projects", {
   coverUrl: text("cover_url"),
   liveUrl: text("live_url"),
   githubUrl: text("github_url"),
+  linksJson: text("links_json").default("[]"),
   sortOrder: integer("sort_order").notNull().default(0),
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
   updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),

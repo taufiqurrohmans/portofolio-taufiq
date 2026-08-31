@@ -28,7 +28,18 @@ export function projectFromRow(row: StoredProject): PortfolioProject {
     coverUrl: row.coverUrl || undefined,
     liveUrl: row.liveUrl || undefined,
     githubUrl: row.githubUrl || undefined,
+    links: safeLinksArray(row.linksJson),
   };
+}
+
+function safeLinksArray(json: string | null) {
+  if (!json) return [];
+  try {
+    const arr = JSON.parse(json);
+    return Array.isArray(arr) ? arr : [];
+  } catch {
+    return [];
+  }
 }
 
 export async function getPortfolioData(): Promise<PortfolioContent> {
@@ -45,12 +56,12 @@ export async function getPortfolioData(): Promise<PortfolioContent> {
     return {
       ...content,
       projects: (projectRows.length > 0 ? projectRows.map(projectFromRow) : fallbackProjects)
-        .filter((project) => project.status === "published"),
+        .filter((project) => project.status === "published" || !project.status),
     };
   } catch {
     return {
       ...defaultPortfolio,
-      projects: defaultPortfolio.projects.filter((project) => project.status === "published"),
+      projects: defaultPortfolio.projects.filter((project) => project.status === "published" || !project.status),
     };
   }
 }

@@ -47,6 +47,14 @@ export const projectInputSchema = z.object({
   coverUrl: safeUrl,
   liveUrl: safeUrl,
   githubUrl: safeUrl,
+  links: z.array(z.object({
+    id: z.string(),
+    type: z.string(),
+    label: z.string(),
+    url: safeUrl,
+    isActive: z.boolean(),
+    openInNewTab: z.boolean(),
+  })).optional().default([]),
   sortOrder: z.number().int().min(0).max(999).default(0),
 });
 

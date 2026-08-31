@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { MobileNoticePopup } from "@/components/ui/mobile-notice-popup";
+import { Preloader } from "@/components/ui/preloader";
 
 export const metadata: Metadata = {
   title: {
@@ -15,6 +17,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = {
+  width: 1024,
+  initialScale: 1,
+  maximumScale: 3,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -22,7 +30,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" suppressHydrationWarning>
-      <body>{children}</body>
+      <body>
+        <Preloader />
+        <MobileNoticePopup />
+        {children}
+      </body>
     </html>
   );
 }

@@ -14,7 +14,7 @@ export function Projects({ projects }: { projects: PortfolioProject[] }) {
   );
 
   const visibleProjects = projects.filter(
-    (project) => project.status === "published" && (filter === "All" || project.category === filter),
+    (project) => (project.status === "published" || !project.status) && (filter === "All" || project.category === filter),
   );
 
   useEffect(() => {
@@ -171,6 +171,20 @@ export function Projects({ projects }: { projects: PortfolioProject[] }) {
                   GitHub <Code2 />
                 </a>
               )}
+              {selectedProject.links?.filter(link => link.isActive).map(link => {
+                const isPrimary = link.type === "website" || link.type === "demo";
+                return (
+                  <a 
+                    key={link.id}
+                    className={`button ${isPrimary ? 'button-primary' : 'button-ghost'}`}
+                    href={link.url}
+                    target={link.openInNewTab ? "_blank" : undefined}
+                    rel={link.openInNewTab ? "noreferrer" : undefined}
+                  >
+                    {link.label} <ArrowUpRight />
+                  </a>
+                );
+              })}
             </div>
             <p className="modal-note">
               Halaman case study lengkap akan menggunakan data yang Anda masukkan melalui admin.

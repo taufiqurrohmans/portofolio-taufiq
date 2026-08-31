@@ -20,6 +20,14 @@ export type PortfolioProject = {
   coverUrl?: string;
   liveUrl?: string;
   githubUrl?: string;
+  links?: {
+    id?: string;
+    type: "GitHub" | "LinkedIn" | "Live Demo" | "Repository" | "Dokumentasi" | "Case Study" | "Figma" | "Canva" | "YouTube" | "Google Drive" | "Credential" | "Download" | "Website" | "Custom Link" | string;
+    label: string;
+    url: string;
+    isActive: boolean;
+    openInNewTab: boolean;
+  }[];
 };
 
 export type GalleryItem = {

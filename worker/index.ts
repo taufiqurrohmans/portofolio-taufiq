@@ -25,23 +25,17 @@ interface ExecutionContext {
 // dangerouslyAllowSVG: true in next.config.js and uncomment below:
 // const imageConfig: ImageConfig = { dangerouslyAllowSVG: true };
 
-const worker = {
-  async fetch(request: Request, env: any, ctx: ExecutionContext): Promise<Response> {
-    const url = new URL(request.url);
+if (typeof (globalThis as any).WeakRef === 'undefined') {
+  (globalThis as any).WeakRef = class WeakRef {
+    target: any;
+    constructor(target: any) { this.target = target; }
+    deref() { return this.target; }
+  };
+}
 
-    // Fix Server Actions context loss: Inject runtime variables into global process.env
-    globalThis.process = globalThis.process || { env: {} };
-    globalThis.process.env = globalThis.process.env || {};
-    
-    // Specifically assign auth variables if they exist in env
-    if (env.ADMIN_EMAILS) {
-      globalThis.process.env.ADMIN_EMAILS = env.ADMIN_EMAILS;
-      (globalThis as any).__ADMIN_EMAILS = env.ADMIN_EMAILS;
-    }
-    if (env.ADMIN_PASSWORD) {
-      globalThis.process.env.ADMIN_PASSWORD = env.ADMIN_PASSWORD;
-      (globalThis as any).__ADMIN_PASSWORD = env.ADMIN_PASSWORD;
-    }
+const worker = {
+  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+    const url = new URL(request.url);
 
     if (url.pathname === "/_vinext/image") {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];

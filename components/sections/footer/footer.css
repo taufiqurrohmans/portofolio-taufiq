@@ -78,7 +78,7 @@
 .form-status { min-height: 1rem; margin: 0; font-size: .7rem; transition: opacity 0.3s ease; }
 .creative-footer {
   width: 100%;
-  min-height: 100vh; /* Make it exactly one page height */
+  min-height: 750px; /* Use absolute value instead of vh to prevent massive gaps on scaled mobile viewports */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -193,11 +193,11 @@
 .pill-4 { top: 15%; right: 10%; } /* Instagram - floating above the pen/LinkedIn */
 
 @media (max-width: 768px) {
-  .pill-1 { top: 20%; left: 5%; font-size: 0.85rem; padding: 0.6rem 1rem; }
-  .pill-2 { top: 35%; left: 5%; font-size: 0.85rem; padding: 0.6rem 1rem; }
-  .pill-3 { top: 40%; right: 5%; font-size: 0.85rem; padding: 0.6rem 1rem; }
-  .pill-4 { top: 45%; right: 5%; font-size: 0.85rem; padding: 0.6rem 1rem; }
-  .creative-footer-graphic { margin-top: -2rem; margin-bottom: -5rem; }
+  .pill-1 { top: 15%; left: 2%; font-size: 0.75rem; padding: 0.5rem 0.8rem; }
+  .pill-2 { top: 35%; left: 2%; font-size: 0.75rem; padding: 0.5rem 0.8rem; }
+  .pill-3 { top: 35%; right: 2%; font-size: 0.75rem; padding: 0.5rem 0.8rem; }
+  .pill-4 { top: 15%; right: 2%; font-size: 0.75rem; padding: 0.5rem 0.8rem; }
+  .creative-footer-graphic { margin-top: -1rem; margin-bottom: -1rem; } /* Fix float issue */
 }
 
 .footer-bottom-bar {
@@ -213,4 +213,40 @@
   font-size: 0.85rem;
   color: #666;
   z-index: 4;
+}
+
+/* =========================================
+   Mobile Optimization (Premium Stacked)
+   ========================================= */
+@media (max-width: 768px) {
+  .contact-section {
+    grid-template-columns: 1fr;
+    padding: clamp(2rem, 5vw, 3rem) 1.25rem;
+    margin: 1rem;
+    gap: 1.5rem;
+  }
+  
+  .contact-section::after {
+    font-size: 8rem;
+    bottom: -10%;
+    right: 5%;
+  }
+  
+  .contact-form {
+    grid-template-columns: 1fr;
+  }
+  
+  .creative-footer {
+    padding-top: 4rem;
+    min-height: auto; /* Avoid forced 100vh on mobile to prevent floating */
+  }
+  
+  .creative-footer-text h2 {
+    font-size: clamp(2.5rem, 9vw, 4rem);
+  }
+  
+  .footer-bottom-bar {
+    padding: 1rem;
+    font-size: 0.75rem;
+  }
 }

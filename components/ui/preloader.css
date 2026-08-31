@@ -1,0 +1,162 @@
+.preloader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff; /* Clean white background */
+  z-index: 99999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Animate out: "membuka dari atas ke bawah" = geser ke bawah */
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+  transform-origin: bottom;
+  transform: translateY(0);
+}
+
+.preloader-overlay.slide-out {
+  transform: translateY(100vh); /* Geser ke bawah (tirai jatuh) */
+}
+
+.preloader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  /* Fade out content slightly faster than the curtain slides */
+  transition: opacity 0.4s ease;
+}
+
+.preloader-overlay.slide-out .preloader-content {
+  opacity: 0;
+}
+
+.preloader-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.preloader-text-wrapper, .preloader-subtext-wrapper {
+  overflow: hidden;
+  padding: 0.5rem;
+}
+
+.preloader-text-wrapper {
+  /* Used for JS transform */
+  will-change: transform;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.preloader-text {
+  font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: 800;
+  color: #141519; /* Dark ink text */
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: revealText 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.2s;
+  white-space: nowrap;
+}
+
+/* Animated 'O' Pill Shape matching homepage */
+.title-animated-o {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0.05em;
+}
+
+.o-pill-shape {
+  display: inline-block;
+  height: 0.6em;
+  border: 0.12em solid #141519;
+  border-radius: 999px;
+  background: transparent;
+  box-sizing: border-box;
+  vertical-align: middle;
+  position: relative;
+  top: -0.01em;
+  animation: oStretch 2s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+
+@keyframes oStretch {
+  0%, 15% { width: 0.65em; } /* Perfect circle */
+  85%, 100% { width: 1.6em; } /* Stretched pill */
+}
+
+.preloader-subtext {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+  font-weight: 600;
+  color: #64748b;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: revealText 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.4s; /* slightly after main text */
+}
+
+.preloader-progress-bar {
+  width: 250px;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.05); /* Light gray track */
+  border-radius: 2px;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+  animation-delay: 0.6s;
+  margin-top: 1rem;
+}
+
+.preloader-progress-fill {
+  height: 100%;
+  background-color: #164fc4; /* Accent deep blue */
+  width: 0%;
+  border-radius: 2px;
+  animation: loadProgress 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  animation-delay: 0.6s;
+}
+
+.fade-out {
+  opacity: 0 !important;
+  transition: opacity 0.4s ease;
+}
+
+@keyframes revealText {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes loadProgress {
+  0% { width: 0%; }
+  40% { width: 45%; }
+  70% { width: 85%; }
+  100% { width: 100%; }
+}
+
+

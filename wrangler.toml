@@ -6,3 +6,7 @@ binding = "DB"
 database_name = "portofolio-db"
 database_id = "e34ff81c-c265-43f8-a8ee-f374830e1105"
 migrations_dir = "drizzle"
+
+[[r2_buckets]]
+bucket_name = "portofolio-media"
+binding = "BUCKET"
