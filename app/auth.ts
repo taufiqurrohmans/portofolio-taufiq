@@ -53,18 +53,6 @@ export async function getAuthUser(): Promise<AuthUser | null> {
     }
   }
 
-  // Local development fallback: if running in dev mode, authenticate as configured admin
-  if (!email && (process.env.NODE_ENV === "development" || !process.env.OPENAI_SITE_ID)) {
-    const rawEmails = typeof env?.ADMIN_EMAILS === "string" ? env.ADMIN_EMAILS : process.env.ADMIN_EMAILS || "";
-    const firstAdmin = rawEmails.split(",").map((e) => e.trim()).filter(Boolean)[0];
-    if (firstAdmin) {
-      return {
-        displayName: "Administrator",
-        email: firstAdmin,
-        fullName: "Administrator",
-      };
-    }
-  }
 
   if (!email) return null;
 
